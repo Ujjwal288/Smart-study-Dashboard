@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #ffffff;
+    width: 420px;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Main */
+.main {
+    padding: 20px;
+}
+
+.input-section {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.input-section input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+
+.input-section input:focus {
+    border-color: #4facfe;
+}
+
+.input-section button {
+    background: #4facfe;
+    border: none;
+    padding: 10px 14px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.input-section button:hover {
+    background: #2e8df7;
+}
+
+/* Progress */
+.progress {
+    margin-bottom: 20px;
+}
+
+.progress p {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+/* Task List */
+ul {
+    list-style: none;
+}
+
+li {
+    background: #f9fafb;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+li:hover {
+    background: #f1f5f9;
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-info span {
+    font-size: 14px;
+}
+
+.deadline {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #9ca3af;
+}
