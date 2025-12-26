@@ -5,24 +5,18 @@ function saveTasks() {
 }
 
 function addTask() {
-    const taskInput = document.getElementById("taskInput");
-    const dateInput = document.getElementById("dateInput");
+    const task = taskInput.value;
+    const date = dateInput.value;
+    const priority = priorityInput.value;
 
-    if (taskInput.value === "" || dateInput.value === "") {
-        alert("Please enter task and deadline");
+    if (!task || !date) {
+        alert("Please fill all fields");
         return;
     }
 
-    tasks.push({
-        text: taskInput.value,
-        date: dateInput.value,
-        completed: false
-    });
-
-    taskInput.value = "";
-    dateInput.value = "";
-
+    tasks.push({ task, date, priority, completed: false });
     saveTasks();
+    taskInput.value = "";
     renderTasks();
 }
 
@@ -33,21 +27,18 @@ function toggleTask(index) {
 }
 
 function renderTasks() {
-    const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
 
-    tasks.forEach((task, index) => {
+    tasks.forEach((t, i) => {
         const li = document.createElement("li");
 
         li.innerHTML = `
             <div class="task-info">
-                <span class="${task.completed ? "completed" : ""}">
-                    ${task.text}
-                </span>
-                <span class="deadline">📅 ${task.date}</span>
+                <span class="${t.completed ? "completed" : ""}">${t.task}</span>
+                <span class="deadline">📅 ${t.date}</span>
+                <span class="badge ${t.priority}">${t.priority}</span>
             </div>
-            <input type="checkbox" ${task.completed ? "checked" : ""} 
-            onclick="toggleTask(${index})">
+            <input type="checkbox" ${t.completed ? "checked" : ""} onclick="toggleTask(${i})">
         `;
 
         taskList.appendChild(li);
@@ -57,12 +48,11 @@ function renderTasks() {
 }
 
 function updateProgress() {
-    const completedTasks = tasks.filter(task => task.completed).length;
-    const totalTasks = tasks.length;
-    const progress = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
+    const completed = tasks.filter(t => t.completed).length;
+    const percent = tasks.length ? Math.round((completed / tasks.length) * 100) : 0;
 
-    document.getElementById("progressText").innerText = `Progress: ${progress}%`;
-    document.getElementById("progressFill").style.width = progress + "%";
+    progressText.innerText = `${percent}% Completed`;
+    progressFill.style.width = percent + "%";
 }
 
 renderTasks();
